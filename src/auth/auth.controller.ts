@@ -18,10 +18,10 @@ export class AuthController {
     }
 
     @Post('login')
-    async login(@Body('userId') userId: string, @Body('password') password:string, //@Body('recaptchaToken') token: string
+    async login(@Body('userId') userId: string, @Body('password') password:string, @Body('recaptchaToken') token: string
     ){
-        //const isValid = await this.authService.validateRecaptcha(token)
-        //if(!isValid) throw new BadRequestException
+        const isValid = await this.authService.validateRecaptcha(token)
+        if(!isValid) throw new BadRequestException
         const res = await this.authService.signIn(userId, password)
         return res
     }

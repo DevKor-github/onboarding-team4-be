@@ -38,9 +38,10 @@ export class AuthController {
         if(!isValid) throw new BadRequestException
         
         try{
-            const regex = /^https:\/\/chat\.nalgae\.me\/profile\/[a-zA-Z0-9_-]*$/
+            /*const regex = /^https:\/\/chat\.nalgae\.me\/profile\/[a-zA-Z0-9_-]*$/
             const profileImgUrl = profileImage ? profileImage : ''
-            if(profileImgUrl !== "" || !regex.test(profileImgUrl)) throw new ForbiddenException("허용되지 않은 URL")
+            if(profileImgUrl !== "" || !regex.test(profileImgUrl)) throw new ForbiddenException("허용되지 않은 URL")*/
+            const profileImgUrl = profileImage ? profileImage : ''
             const user = await this.authService.signUp(userId, password, userNick, profileImgUrl)
             return { message: "Success", user }
         }catch(err){
